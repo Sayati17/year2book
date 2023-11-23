@@ -1,6 +1,8 @@
 # year2book
 AoL_Secure_Programming
 
+year2book is the web base application that provide the list of graduated collegues or alumni every year.
+
 Anggota
 - Antonio Fandako_2540125182
 - Ryan_2540118012
