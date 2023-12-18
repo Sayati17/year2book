@@ -17,11 +17,11 @@
         }
     }
 
-    function checkdup($email){
+    function checkdup($username){
         global $conn;
-        $query = "SELECT * FROM users WHERE email = ?";
+        $query = "SELECT * FROM users WHERE username = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("s",$email);
+        $stmt->bind_param("s",$username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -51,9 +51,9 @@
             }
 
             $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
-            $checkdup = checkdup($email);
+            $checkdup = checkdup($username);
             if($checkdup){
-                $_SESSION["error_message"] = "Email Already Exist";
+                $_SESSION["error_message"] = "User Already Exist";
                 header("Location: ../register.php");
                 exit();
             }else{
