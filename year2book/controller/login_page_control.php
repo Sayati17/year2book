@@ -6,8 +6,6 @@
 
         $username = $_POST['username'];
         $password = $_POST['password'];
-        echo $username;
-        echo $password;
 
         // with prepared statement
         $query = "SELECT * FROM users WHERE username=?;";
