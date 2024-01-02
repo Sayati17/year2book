@@ -35,8 +35,11 @@
     if($_SERVER['REQUEST_METHOD'] === "POST"){
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
+            $username = htmlspecialchars($username);
             $email = $_POST['email'];
+            $email = htmlspecialchars($email);
             $password = $_POST['password'];
+            $password = htmlspecialchars($password);
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $_SESSION["error_message"] = "Invalid Email Format";
