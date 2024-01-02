@@ -42,6 +42,9 @@ function uploadFile($photo, $target_directory)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']){
+        die("Invalid CSRF Token");
+    }
     if (isset($_POST['upload'])) {
         $photo = $_FILES['photo'];
         $nim = $_POST['nim'];
