@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if (!isset($_SESSION['csrf_token']) || empty($_SESSION['csrf_token'])) {
+      $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+  }
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,7 @@
           />
           <label for="password">Password</label>
             <input type="password" id="password" name="password" autocomplete="off" placeholder="Password">
+          <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
           <!-- <label for="">Confirm Password</label>
           <input type="password" placeholder="Confirm Your Password" /> -->
           <button class="submit" name="submit" type="submit">Save</button>
