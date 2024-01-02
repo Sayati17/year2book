@@ -12,7 +12,9 @@ session_set_cookie_params([
 error_reporting(0);
 ini_set('display_errors', 0);
 session_start();
-
+if (!isset($_SESSION['csrf_token']) || empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
 // Redirect if not logged in
 if ($_SESSION['login'] == false) {
     header("Location: login_page.php");
@@ -86,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="female">Female</option>
             <option value="other">Other</option>
         </select><br>
-
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <input name="upload" type="submit" value="Upload">
     </form>
 
