@@ -35,6 +35,7 @@
     if($_SERVER['REQUEST_METHOD'] === "POST"){
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
+            $username = htmlspecialchars($username);
             $email = $_POST['email'];
             $password = $_POST['password'];
 

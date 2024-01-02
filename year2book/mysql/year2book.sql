@@ -16,7 +16,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
+CREATE DATABASE IF NOT EXISTS `year2book`;
+USE `year2book`;
 --
 -- Database: `year2book`
 --
@@ -32,11 +33,11 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `nim` varchar(255) NOT NULL,
-  `majority` varchar(255) NOT NULL,
-  `yearofgraduation` int(11) NOT NULL,
-  `gender` varchar(255) NOT NULL
+  `photo` varchar(255),
+  `nim` varchar(255),
+  `majority` varchar(255),
+  `yearofgraduation` int(11),
+  `gender` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

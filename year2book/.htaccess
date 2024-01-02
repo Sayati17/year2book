@@ -1,0 +1,20 @@
+# Disable directory browsing
+Options -Indexes
+
+# Allow access to specific folders for your codebase
+RewriteEngine On
+RewriteRule ^ - [L]
+
+# Deny access to the specified folders and their content
+RewriteRule ^(assets|connection|config|storage|controller|mysql)/ - [F]
+
+# Deny access to files and directories within the specified folders
+RewriteRule ^(assets|connection|config|storage|controller|mysql)/. - [F]
+
+# Deny access to specific files
+RewriteRule ^(\.htaccess|Dockerfile)$ - [F]
+
+# Deny access to the Dockerfile
+<Files "Dockerfile">
+    Deny from all
+</Files>
