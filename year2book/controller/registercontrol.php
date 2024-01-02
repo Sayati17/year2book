@@ -33,6 +33,9 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']){
+            die("Invalid CSRF Token");
+        }
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
             $username = htmlspecialchars($username);
