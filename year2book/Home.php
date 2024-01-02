@@ -54,7 +54,7 @@
        <div class="main-box top">
           <div class="top">
             <div class="box">
-                <p>Hello <b><?php echo $username ?></b>, Welcome...</p>
+                <p>Hello <b><?php echo htmlspecialchars($username) ?></b>, Welcome...</p>
                 <?php
                 // Fetch user photo from the database
                 $display = "SELECT photo FROM users WHERE id = ?;";
