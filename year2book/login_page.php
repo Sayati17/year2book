@@ -1,6 +1,15 @@
 <?php 
     session_start();
     $login = false;
+    if (isset($_SESSION['attempt_again'])){
+      $now=time();
+      if($now>=$_SESSION['attempt_again']){
+        unset($_SESSION['attempt']);
+        unset($_SESSION['attempt_again']);
+      }    
+      echo '<script>alert("Too many attempts! Please login again after 2 minutes!")</script>';
+    }
+
 
     if (!isset($_SESSION['csrf_token']) || empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
