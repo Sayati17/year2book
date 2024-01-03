@@ -29,7 +29,7 @@ USE `year2book`;
 --
 
 CREATE TABLE `users` (
-  `id` int(255) NOT NULL,
+  `id` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -62,10 +62,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

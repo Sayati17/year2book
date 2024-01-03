@@ -2,11 +2,15 @@
     session_start();
     require "../connection/conn.php";
 
-    function doregister($username, $email, $password){
+    function generateRandomID(){
+        return 'user_' . time() . '_' . rand(1000,9999);
+    }
+
+    function doregister($id,$username, $email, $password){
         global $conn;
-        $query = "INSERT INTO users (username, email, password) VALUES (?,?,?);";
+        $query = "INSERT INTO users (id,username, email, password) VALUES (?,?,?,?);";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("sss",$username,$email,$password);
+        $stmt->bind_param("ssss",$id,$username,$email,$password);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -37,6 +41,7 @@
             die("Invalid CSRF Token");
         }
         if(isset($_POST['submit'])){
+            $id = generateRandomID();
             $username = $_POST['username'];
             $username = htmlspecialchars($username);
             $email = $_POST['email'];
@@ -63,7 +68,7 @@
                 header("Location: ../register.php");
                 exit();
             }else{
-                $register = doregister($username, $email, $hashed_pass);
+                $register = doregister($id,$username, $email, $hashed_pass);
                 if($register){
                     header("Location: ../login_page.php");
                 }else{
