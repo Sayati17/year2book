@@ -62,6 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             exit(); // Terminate execution
         }
 
+        // Check if the file extension is allowed
+        $allowed_extensions = array("jpg", "jpeg", "pdf", "png", "docx", "xlsx", "mp4", "zip", "7z", "txt", "rar", "pptx");
+        $fileExtension = pathinfo($photo['name'], PATHINFO_EXTENSION);
+
+        if (!in_array($fileExtension, $allowed_extensions)) {
+            echo "Invalid Extension";
+            exit(); // Terminate execution
+        }
+
         // Perform file upload
         $uploaded_file = uploadFile($photo, $target_directory);
 
@@ -77,6 +86,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             }
         } else {
             echo "Upload Failed.";
+        }
+
+
+
+        $allowed_extension = array("jpeg", "pdf", "png", "docx", "xlsx", "mp4", "zip", "7z", "txt", "rar", "pptx");
+    
+        if(!in_array($fileExtension, $allowed_extension)){
+            echo "Invalid Extension";
         }
     }
 }
